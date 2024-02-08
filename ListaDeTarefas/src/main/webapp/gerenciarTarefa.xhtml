@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<ui:composition template="template/templatePrincipal.xhtml">
+	<ui:define name="content">		 
+
+<h:body style="background-color: #6495ED">		 
+	
+	<div style="background-color: #B0C4DE; border-radius: 10px;">
+		<h:form id="formTarefa">
+		<div style="display: flex; justify-content: center; align-items: center;">
+			<div style="background-color: #FFF; border-radius: 10px; width: 300px; margin-top: 20px;">
+				<div style="display:flex; justify-content: center; align-items: center;">
+					<h2 style="margin-top: 10px;">Lista de Tarefa</h2>
+				</div>
+			
+				<div class="field" style="display:flex; justify-content: center; align-items: center; margin-right: 0%;">
+	                    <span class="ui-float-label ui-input">
+	                        <p:inputText value="#{gerenciarTarefa.tarefa.titulo}" style="width: 240px;"/>
+	                        <p:outputLabel for="@previous" value="Título" styleClass="ml-4" />
+	                    </span>
+	            </div>
+	            
+	            <br/>
+	            
+				<div class="field" style="display:flex; justify-content: center; align-items: center; margin-top: 5px;">
+	                    <span class="ui-float-label">
+	                       <p:inputTextarea rows="3" cols="30" value="#{gerenciarTarefa.tarefa.descricao}"/>
+	                       <p:outputLabel for="@previous" value="Descrição" />
+	                    </span>
+	            </div>
+	            
+	            <br/>
+	            
+	            <div style="display: flex; justify-content: center; align-items: center; margin-right: 48%; margin-bottom: 15px;">
+					<p:commandButton icon="pi pi-save" iconPos="right" styleClass="ui-button-success" value="Salvar" action="#{gerenciarTarefa.salvar}" update="formTarefa"/>
+				</div>
+			</div>
+		</div>
+			
+			<br/><br/>
+				<div style=" display: flex; justify-content: center; align-items: center;">
+					<p:dataTable id="tarefasTable" value="#{gerenciarTarefa.tarefas}" var="tarefa" style="width: 1200px; margin-top: 15px; margin-bottom: 15px; border-radius: 10px;">
+						<p:column headerText="Código">
+							<h:outputText value="#{tarefa.codigo}"/>
+						</p:column>
+						<p:column headerText="Título">
+							<h:outputText value="#{tarefa.titulo}"/>
+						</p:column>
+						<p:column headerText="Descrição">
+							<h:outputText value="#{tarefa.descricao}"/>
+						</p:column>			
+						<p:column headerText="Opções">
+							<p:commandButton icon="pi pi-trash" iconPos="right" styleClass="ui-button-danger" value="Excluir" action="#{gerenciarTarefa.excluir(tarefa)}" update="formTarefa"/>
+						</p:column>
+					</p:dataTable>
+				</div>
+		</h:form>	
+	</div>
+</h:body>
+	</ui:define>
+</ui:composition>
+</html>
